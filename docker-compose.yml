@@ -1,0 +1,69 @@
+# version: '3'
+# services:
+#   react-app:
+#     image: node:18.12.1
+#     container_name: react-app-container-new
+#     working_dir: /app-server
+#     command: npm run dev
+#     ports:
+#       - "4000:4000"
+#     volumes:
+#       - "/usr/src/app-server"
+
+#   node-app:
+#     image: node:18.12.1
+#     container_name: node-app-container-new
+#     working_dir: /src
+#     command: npm start
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - "/usr/src/app-client"
+
+
+
+
+
+version: '3.7'
+
+services:
+  node-app:
+    build:
+      context: ./marhaba
+      dockerfile: Dockerfile
+    container_name: node-app-mycontainer
+    command: npm run dev
+    volumes:
+      - ./marhaba:/usr/src/app-server
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    env_file:
+      - ./marhaba/.env
+    environment:
+      - NODE_ENV=development
+
+  mongo:
+    image: mongo
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+
+  react-app:
+    build:
+      context: ./livraison
+      dockerfile: Dockerfile
+    container_name: react-app-mycontainer
+    command: npm start
+    volumes:
+      - ./livraison:/usr/src/app-client
+    depends_on:
+      - node-app
+    ports:
+      - "3000:3000"
+
+volumes:
+  data-volume:
+
