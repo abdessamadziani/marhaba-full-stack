@@ -9,8 +9,14 @@ import { ForgetPasswordConfirmation } from './user/ForgetPasswordConfirmation';
 import { ForgetPassword } from './user/ForgetPassword';
 import Dashboard from './user/Dashboard';
 import { PrivateRoutes } from './auth/PrivateRoutes';
+import { isAuthenticated } from './auth/helpers';
+import { Newuser } from './user/Newuser';
 
 const App = () => {
+  const auth= isAuthenticated()
+
+
+
   return (
     <div className="App">
 
@@ -23,9 +29,11 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
           </Route>
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path= {auth ? "/" : "/signin" } element={auth ? <Home /> : <Signin /> }/>
+          <Route path= {auth ? "/" : "/signup" } element={auth ? <Home /> : <Signup /> } />
           <Route path="/activate-email/:token" element={<ActiveMe />} />
+          <Route path="/getUser" element={<Newuser />} />
+
           <Route
             path="/forget-password-confirmation/:token"
             element={<ForgetPasswordConfirmation />}

@@ -71,7 +71,7 @@ const navigate=useNavigate()
               console.log(' this is the res before create local storage',res);
               localStorage.setItem('jwt_token',JSON.stringify(res.data));
               console.log(' this is the res.data after creat local storage',res.data);
-
+              
               navigate('/dashboard'); // Redirect to the home page
 
             })
@@ -106,12 +106,12 @@ const navigate=useNavigate()
 
                   </div>
                   <div className="flex items-start">
-                      <div className="flex items-start">
+                      {/* <div className="flex items-start">
                           <div className="flex items-center h-5">
                               <input onChange={handleChange} id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                           </div>
                           <label htmlFor="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                      </div>
+                      </div> */}
                       <Link to='/forgetpassword' className="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</Link>
                   </div>
                   <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign In</button>

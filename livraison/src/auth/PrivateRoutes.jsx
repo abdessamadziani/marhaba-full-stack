@@ -5,10 +5,14 @@ import { isAuthenticated } from './helpers';
 export const PrivateRoutes = () => {
   //  let auth={'token':true}
   let auth=isAuthenticated()
+
      return (
 
         auth ? <Outlet/> : <Navigate to="/signin" />
+
           )
+
+
 
 }
 
